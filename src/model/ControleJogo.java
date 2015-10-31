@@ -24,14 +24,14 @@ public class ControleJogo {
     }
 
     public void adicionaInimigo(Scene cena) {
-        int a = rdm.nextInt(300);
+        int a = rdm.nextInt(100);
 
         if (a == 10) {
-            a = rdm.nextInt(2);
+            a = rdm.nextInt(3);
 
-            if (a == 0) {
+            if (a == 2) {
                 inimigos.add(new InimigoForte());
-            } else if (a == 1) {
+            } else if (a<2) {
                 inimigos.add(new InimigoFraco());
             }
 

@@ -16,7 +16,7 @@ public class InimigoFraco extends Inimigo {
         super(URL.sprite("inimigo1.png"), 1);//Sprite do personagem, Quantos Sprites estão contidos na imagem
         this.x = 740;//posição HORIZONTAL do personagem
         this.y = new Random().nextInt(540);//posição VERTICAL do personagem
-        this.VELOCIDADE = 0.5;
+        this.VELOCIDADE = 0.3;
         this.movendo = true;
         this.pontuacao = 3;
         this.life = 0;

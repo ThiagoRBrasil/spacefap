@@ -15,7 +15,7 @@ public class InimigoForte extends Inimigo{
         super(URL.sprite("inimigo2.png"), 1);//Sprite do personagem, Quantos Sprites estão contidos na imagem
         this.x = 740;//posição HORIZONTAL do personagem
         this.y = new Random().nextInt(540);//posição VERTICAL do personagem
-        this.VELOCIDADE = 0.1;
+        this.VELOCIDADE = 0.17;
         this.movendo = true;
         this.pontuacao = 10;
         this.life = 2;
