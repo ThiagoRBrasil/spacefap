@@ -31,7 +31,7 @@ public class ControleJogo {
 
             if (a == 2) {
                 inimigos.add(new InimigoForte());
-            } else if (a<2) {
+            } else if (a < 2) {
                 inimigos.add(new InimigoFraco());
             }
 
@@ -70,9 +70,7 @@ public class ControleJogo {
     }
 
     public void colisaoTiroInimigo(Scene scena) {
-        LinkedList<Tiro> llTiro = new LinkedList();
-        LinkedList<Inimigo> llInimigo = new LinkedList();
-        
+
         for (Tiro tiro : tiros) {
             for (Inimigo inimigo : inimigos) {
                 if (tiro.collided(inimigo)) {
@@ -80,24 +78,15 @@ public class ControleJogo {
                         tiro.x = 1000;
                         inimigo.setLife(inimigo.getLife() - 1);
                     } else {
-//                        inimigo.x = -70;
-//                        tiro.x = 1000;
+                        inimigo.x = -70;
+                        tiro.x = 1000;
                         pontuacao += inimigo.getPontuacao();
-                        llTiro.add(tiro);
-                        llInimigo.add(inimigo);
                     }
                     System.out.println(pontuacao);
                 }
             }
         }
-        for(Inimigo inimigo : llInimigo){
-            scena.removeOverlay(inimigo);
-            inimigos.remove(inimigo);
-        }
-        for(Tiro tiro : llTiro){
-            scena.removeOverlay(tiro);
-            tiros.remove(tiro);
-        }
+        
     }
 
     public void colisaoNaveInimigo(Nave nave) {
