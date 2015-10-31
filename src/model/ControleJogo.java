@@ -69,7 +69,7 @@ public class ControleJogo {
         }
     }
 
-    public void colisaoTiroInimigo() {
+    public void colisaoTiroInimigo(Scene scena) {
         for (Tiro tiro : tiros) {
             for (Inimigo inimigo : inimigos) {
                 if (tiro.collided(inimigo)) {
@@ -77,9 +77,13 @@ public class ControleJogo {
                         tiro.x = 1000;
                         inimigo.setLife(inimigo.getLife() - 1);
                     } else {
-                        inimigo.x = -70;
-                        tiro.x = 1000;
+//                        inimigo.x = -70;
+//                        tiro.x = 1000;
                         pontuacao += inimigo.getPontuacao();
+                        scena.removeOverlay(inimigo);
+                        scena.removeOverlay(tiro);
+                        inimigos.remove(inimigo);
+                        tiros.remove(tiro);
                     }
                     System.out.println(pontuacao);
                 }
