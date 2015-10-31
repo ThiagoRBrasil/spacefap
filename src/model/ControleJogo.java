@@ -24,11 +24,20 @@ public class ControleJogo {
     }
 
     public void adicionaInimigo(Scene cena) {
-        inimigos.add(new InimigoForte());
-        inimigos.add(new InimigoFraco());
-        
-        for (int i = 0; i < inimigos.size(); i++) {
-            cena.addOverlay(inimigos.get(i));
+        int a = rdm.nextInt(300);
+
+        if (a == 10) {
+            a = rdm.nextInt(2);
+
+            if (a == 0) {
+                inimigos.add(new InimigoForte());
+            } else if (a == 1) {
+                inimigos.add(new InimigoFraco());
+            }
+
+            for (int i = 0; i < inimigos.size(); i++) {
+                cena.addOverlay(inimigos.get(i));
+            }
         }
 
         //somDisparoInimigo();

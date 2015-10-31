@@ -26,7 +26,8 @@ public class Cenario {
         cena.loadFromFile(URL.scenario("space.scn"));//Background da Fase do Jogo
         cj = new ControleJogo();
         nave = new Nave(10, 300, cj);//Criando Personagem
-        cj.adicionaInimigo(cena); //Criando Inimigos
+//        cj.adicionaInimigo(cena); //Criando Inimigos
+        
         run();
     }
 
@@ -41,6 +42,7 @@ public class Cenario {
             cena.draw();
             nave.draw();
             nave.mover();
+            cj.adicionaInimigo(cena); //Criando Inimigos
             cj.runInimigo();
             cj.colisaoTiroInimigo();
             cj.colisaoNaveInimigo(nave);
