@@ -44,7 +44,7 @@ public class Cenario {
             nave.mover();
             cj.adicionaInimigo(cena); //Criando Inimigos
             cj.runInimigo();
-            cj.colisaoTiroInimigo();
+            cj.colisaoTiroInimigo(cena);
             cj.colisaoNaveInimigo(nave);
             janela.update();
             if (this.janela.getKeyboard().keyDown(27)) {//tecla ESC
