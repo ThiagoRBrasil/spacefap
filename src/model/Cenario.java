@@ -50,6 +50,7 @@ public class Cenario {
             cj.runInimigo();
             cj.colisaoTiroInimigo(cena);
             cj.colisaoNaveInimigo(nave);
+            cj.velocidadeInimigos(new Inimigo());
             janela.update();
             if (this.janela.getKeyboard().keyDown(27)) {//tecla ESC
                 janela.exit();//Encerra o jogo

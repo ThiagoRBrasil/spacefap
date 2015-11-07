@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import jplay.Scene;
@@ -17,6 +16,9 @@ public class ControleJogo {
     private final static LinkedList<Tiro> tiros = new LinkedList<>();
     private int pontuacao;
     private Random rdm = new Random();
+    private int RANDOM = 1000;
+    private int NVL_DIFICULDADE = 50;
+    private int NVL_INIMIGO = 200;
     boolean jogando = true;
 
     public boolean isJogando() {
@@ -27,8 +29,15 @@ public class ControleJogo {
         return this.pontuacao;
     }
 
+    public void velocidadeInimigos(Inimigo inimigo) {
+        if (pontuacao >= NVL_INIMIGO && NVL_INIMIGO <= 4000) {
+            inimigo.setVelocidade();
+            NVL_INIMIGO += 200;
+        }
+    }
+
     public void adicionaInimigo(Scene cena) {
-        int a = rdm.nextInt(100);
+        int a = rdm.nextInt(RANDOM);
 
         if (a == 10) {
             a = rdm.nextInt(3);
@@ -42,9 +51,11 @@ public class ControleJogo {
             for (int i = 0; i < inimigos.size(); i++) {
                 cena.addOverlay(inimigos.get(i));
             }
+            if (pontuacao >= NVL_DIFICULDADE && RANDOM > 50) {
+                RANDOM -= 50;
+                NVL_DIFICULDADE += 50;
+            }
         }
-
-        //somDisparoInimigo();
     }
 
     public void adicionaTiro(double x, double y, Scene cena) {
@@ -55,11 +66,6 @@ public class ControleJogo {
     }
 
     public void runInimigo() {
-//        for (int i = 0; i < inimigos.size(); i++) {
-//            Inimigo inimigo = inimigos.removeFirst();
-//            inimigo.run();
-//            inimigos.addLast(inimigo);
-//        }
         for (Inimigo inimigo : inimigos) {
             inimigo.run();
         }

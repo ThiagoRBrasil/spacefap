@@ -10,7 +10,7 @@ import jplay.Window;
 public class Nave extends Sprite {
     
     ControleJogo tiros ;
-    protected int life = 1;
+    protected int life = 2;
     
     /**
      * Cria um personagem do Jogo, informando a posição na janela que ele irá

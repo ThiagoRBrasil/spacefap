@@ -8,18 +8,23 @@ package model;
 import jplay.Sprite;
 import jplay.URL;
 
-public class Inimigo extends Sprite{
+public class Inimigo extends Sprite {
+
     protected int life;
-    protected double VELOCIDADE;
+    protected static double VELOCIDADE;
     protected boolean movendo;
     protected int pontuacao;
+
+    public Inimigo(){
+        super(URL.sprite("inimigo2.png"), 1);
+    }
     
     public Inimigo(String filename, int frames) {
         super(filename, frames);
     }
-    
-    public void run(){
-        
+
+    public void run() {
+
     }
 
     public int getLife() {
@@ -33,6 +38,9 @@ public class Inimigo extends Sprite{
     public int getPontuacao() {
         return pontuacao;
     }
-    
-    
+
+    public void setVelocidade() {
+        this.VELOCIDADE += 0.05;
+    }
+
 }
