@@ -11,7 +11,8 @@ public class Main {
      * Inicializará o Jogo
      * <p>
      * Primeira Tela - Tela de Menu
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
 
@@ -26,6 +27,9 @@ public class Main {
 
             if (teclado.keyDown(Keyboard.ENTER_KEY)) {//tecla ENTER
                 new Cenario(janela);//Inicializará o novo Cenario (cenario do jogo)
+            }
+            if (teclado.keyDown(Keyboard.ESCAPE_KEY)) {//tecla ESC
+                janela.exit();//Encerra o jogo
             }
         }
     }

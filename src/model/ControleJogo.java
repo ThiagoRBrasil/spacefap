@@ -1,6 +1,6 @@
 package model;
 
-import com.sun.webkit.dom.RangeImpl;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import jplay.Scene;
@@ -13,14 +13,18 @@ import jplay.URL;
  */
 public class ControleJogo {
 
-    static LinkedList<Inimigo> inimigos = new LinkedList<>();
-    static LinkedList<Tiro> tiros = new LinkedList<>();
-    int pontuacao;
-    Random rdm = new Random();
+    private final static LinkedList<Inimigo> inimigos = new LinkedList<>();
+    private final static LinkedList<Tiro> tiros = new LinkedList<>();
+    private int pontuacao;
+    private Random rdm = new Random();
     boolean jogando = true;
 
     public boolean isJogando() {
         return jogando;
+    }
+
+    public int getPontuacao() {
+        return this.pontuacao;
     }
 
     public void adicionaInimigo(Scene cena) {
@@ -71,6 +75,9 @@ public class ControleJogo {
 
     public void colisaoTiroInimigo(Scene scena) {
 
+        LinkedList<Tiro> colidedShot = new LinkedList<>();
+        LinkedList<Inimigo> colidedEnemy = new LinkedList<>();
+
         for (Tiro tiro : tiros) {
             for (Inimigo inimigo : inimigos) {
                 if (tiro.collided(inimigo)) {
@@ -81,12 +88,22 @@ public class ControleJogo {
                         inimigo.x = -70;
                         tiro.x = 1000;
                         pontuacao += inimigo.getPontuacao();
+                        scena.removeOverlay(tiro);
+                        scena.removeOverlay(inimigo);
+                        colidedShot.add(tiro);
+                        colidedEnemy.add(inimigo);
                     }
                     System.out.println(pontuacao);
                 }
             }
         }
-        
+        for (Inimigo enemy : colidedEnemy) {
+            inimigos.remove(enemy);
+        }
+        for (Tiro shot : colidedShot) {
+            inimigos.remove(shot);
+        }
+
     }
 
     public void colisaoNaveInimigo(Nave nave) {

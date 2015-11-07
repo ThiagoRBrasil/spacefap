@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Font;
 import jplay.Scene;
 import jplay.URL;
 import jplay.Window;
@@ -10,6 +12,7 @@ public class Cenario {
     private final Scene cena;
     private final Nave nave;
     private ControleJogo cj;
+    private Font f = new Font("arial", Font.BOLD, 20);//Font HUD
 
     /**
      * Nesta classe será a tela do jogo onde terá o cenário e seus personagens.
@@ -26,8 +29,7 @@ public class Cenario {
         cena.loadFromFile(URL.scenario("space.scn"));//Background da Fase do Jogo
         cj = new ControleJogo();
         nave = new Nave(10, 300, cj);//Criando Personagem
-//        cj.adicionaInimigo(cena); //Criando Inimigos
-        
+
         run();
     }
 
@@ -42,6 +44,8 @@ public class Cenario {
             cena.draw();
             nave.draw();
             nave.mover();
+            this.janela.drawText("Life: " + (nave.getLife() + 1), 20, 30, Color.yellow, this.f);//Life do jogo
+            this.janela.drawText("Score: " + cj.getPontuacao(), 650, 30, Color.yellow, this.f);//Score do jogo
             cj.adicionaInimigo(cena); //Criando Inimigos
             cj.runInimigo();
             cj.colisaoTiroInimigo(cena);
