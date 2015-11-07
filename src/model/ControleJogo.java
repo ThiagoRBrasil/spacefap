@@ -14,8 +14,8 @@ public class ControleJogo {
 
     private final static LinkedList<Inimigo> inimigos = new LinkedList<>();
     private final static LinkedList<Tiro> tiros = new LinkedList<>();
+    private final Random rdm = new Random();
     private int pontuacao;
-    private Random rdm = new Random();
     private int RANDOM = 1000;
     private int NVL_DIFICULDADE = 50;
     private int NVL_INIMIGO = 200;
