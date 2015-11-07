@@ -106,7 +106,7 @@ public class ControleJogo {
             inimigos.remove(enemy);
         }
         for (Tiro shot : colidedShot) {//Retira tiros atingidor do LinkedList
-            inimigos.remove(shot);
+            tiros.remove(shot);
         }
     }
 

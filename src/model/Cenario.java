@@ -12,7 +12,7 @@ public class Cenario {
     private final Scene cena;
     private final Nave nave;
     private ControleJogo cj;
-    private Font f = new Font("arial", Font.BOLD, 20);//Font HUD
+    private Font f = new Font("arial", Font.BOLD, 29);//Font HUD
 
     /**
      * Nesta classe será a tela do jogo onde terá o cenário e seus personagens.
@@ -44,8 +44,8 @@ public class Cenario {
             cena.draw();
             nave.draw();
             nave.mover();
-            this.janela.drawText("Life: " + (nave.getLife() + 1), 20, 30, Color.yellow, this.f);//Life do jogo
-            this.janela.drawText("Score: " + cj.getPontuacao(), 650, 30, Color.yellow, this.f);//Score do jogo
+            this.janela.drawText("Life: " + (nave.getLife() + 1), 20, 36, Color.ORANGE, this.f);//Life do jogo
+            this.janela.drawText(String.valueOf(cj.getPontuacao()), 713, 36, Color.ORANGE, this.f);//Score do jogo
             cj.adicionaInimigo(cena); //Criando Inimigos
             cj.runInimigo();
             cj.colisaoTiroInimigo(cena);
