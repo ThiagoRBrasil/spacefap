@@ -88,22 +88,20 @@ public class ControleJogo {
                         inimigo.x = -70;
                         tiro.x = 1000;
                         pontuacao += inimigo.getPontuacao();
-                        scena.removeOverlay(tiro);
-                        scena.removeOverlay(inimigo);
-                        colidedShot.add(tiro);
-                        colidedEnemy.add(inimigo);
+                        scena.removeOverlay(tiro);//remove o tiro da cena do jogo
+                        scena.removeOverlay(inimigo);//remove o inimigo da cena do jogo
+                        colidedShot.add(tiro);//add tiro atingido em um LinkedList temporario
+                        colidedEnemy.add(inimigo);//add inimigo atingido em um LinkedList temporario
                     }
-                    System.out.println(pontuacao);
                 }
             }
         }
-        for (Inimigo enemy : colidedEnemy) {
+        for (Inimigo enemy : colidedEnemy) {//Retira inimigos atingidor do LinkedList
             inimigos.remove(enemy);
         }
-        for (Tiro shot : colidedShot) {
+        for (Tiro shot : colidedShot) {//Retira tiros atingidor do LinkedList
             inimigos.remove(shot);
         }
-
     }
 
     public void colisaoNaveInimigo(Nave nave) {
