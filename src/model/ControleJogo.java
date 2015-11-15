@@ -1,15 +1,12 @@
 package model;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import jplay.Scene;
 import jplay.Sound;
 import jplay.URL;
 
-/**
- *
- * @author Thiago
- */
 public class ControleJogo {
 
     private final static LinkedList<Inimigo> inimigos = new LinkedList<>();
@@ -36,13 +33,38 @@ public class ControleJogo {
         }
     }
 
+    public void verificaObjCena(Scene cena) {//remove TIRO/INIMIGO da cena quando sair da janela
+
+        LinkedList<Tiro> shot = new LinkedList<>();
+        LinkedList<Inimigo> enemy = new LinkedList<>();
+
+        for (Tiro t : this.tiros) {
+            if (t.getX() > 850) {
+                cena.removeOverlay(t);
+                shot.add(t);
+            }
+        }
+        for (Tiro t : shot) {
+            this.tiros.remove(t);
+        }
+        for (Inimigo i : this.inimigos) {
+            if (i.getX() < -80) {
+                cena.removeOverlay(i);
+                enemy.add(i);
+            }
+        }
+        for (Inimigo i : enemy) {
+            this.inimigos.remove(i);
+        }
+    }
+
     public void adicionaInimigo(Scene cena) {
         int a = rdm.nextInt(RANDOM);
 
         if (a == 10) {
             a = rdm.nextInt(3);
 
-            if (a == 2) {
+            if (a == 2 && this.pontuacao > 100) {
                 inimigos.add(new InimigoForte());
             } else if (a < 2) {
                 inimigos.add(new InimigoFraco());
@@ -62,7 +84,6 @@ public class ControleJogo {
         Tiro tiro = new Tiro(x, y);
         tiros.addFirst(tiro);
         cena.addOverlay(tiro);
-        //somDisparoTiro();
     }
 
     public void runInimigo() {
@@ -118,9 +139,19 @@ public class ControleJogo {
                     nave.setLife(nave.getLife() - 1);
                 } else {
                     jogando = false;
-                    System.out.println("GAME OVER, BURRO");
+                    this.tiros.clear();//apaga todos os tiros do jogo
+                    this.inimigos.clear();//apaga todos os inimigos do jogo
+
+                    ranking.RankingDAO rankingDAO = new ranking.RankingDAO();
+                    if (rankingDAO.listar(pontuacao).isEmpty()) {//verifica pontuacao ja adicionada
+
+                        ranking.Ranking ranking = new ranking.Ranking();
+
+                        ranking.setPontuacao(this.pontuacao);
+                        rankingDAO.salvar(ranking);//salca nova pontuacao ao banco
+
+                    }
                 }
-                System.out.println(nave.getLife());
             }
         }
     }

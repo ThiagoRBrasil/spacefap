@@ -3,10 +3,6 @@ package model;
 import jplay.Sprite;
 import jplay.URL;
 
-/**
- *
- * @author Thiago
- */
 public class Tiro extends Sprite {
 
     protected static final int VELOCIDADE_TIRO = 2;

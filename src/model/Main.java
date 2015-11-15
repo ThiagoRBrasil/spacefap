@@ -21,6 +21,8 @@ public class Main {
 
         Keyboard teclado = janela.getKeyboard();//Listener para saber qual tecla ira ser apertada no teclado
 
+        util_Banco.HibernateUtil.getSessionFactory().openSession();
+        
         while (true) {
             background.draw();
             janela.update();
@@ -30,6 +32,7 @@ public class Main {
             }
             if (teclado.keyDown(Keyboard.ESCAPE_KEY)) {//tecla ESC
                 janela.exit();//Encerra o jogo
+                util_Banco.HibernateUtil.getSessionFactory().close();
             }
         }
     }
